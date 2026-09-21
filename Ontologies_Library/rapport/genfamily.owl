@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns="http://www.example.org/genfamily#"
+     xml:base="http://www.example.org/genfamily"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+
+  <!-- Ontologie -->
+  <owl:Ontology rdf:about="http://www.example.org/genfamily"/>
+
+  <!-- Classes -->
+  <owl:Class rdf:about="#Personne"/>
+  <owl:Class rdf:about="#Homme">
+    <rdfs:subClassOf rdf:resource="#Personne"/>
+    <!-- Une personne ne peut être à la fois un homme et une femme -->
+    <owl:disjointWith rdf:resource="#Femme"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Femme">
+    <rdfs:subClassOf rdf:resource="#Personne"/>
+    <owl:disjointWith rdf:resource="#Homme"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Parent">
+    <rdfs:subClassOf rdf:resource="#Personne"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Enfant">
+    <rdfs:subClassOf rdf:resource="#Personne"/>
+    <!-- Un enfant doit avoir au moins un parent -->
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="#aPourEnfant"/>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Frère">
+    <rdfs:subClassOf rdf:resource="#Personne"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Soeur">
+    <rdfs:subClassOf rdf:resource="#Personne"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Couple"/>
+  <owl:Class rdf:about="#Naissance"/>
+  <owl:Class rdf:about="#Décès"/>
+  <owl:Class rdf:about="#Mariage"/>
+
+  <!-- Propriétés d'objet -->
+  <owl:ObjectProperty rdf:about="#estPèreDe">
+    <rdfs:domain rdf:resource="#Homme"/>
+    <rdfs:range rdf:resource="#Enfant"/>
+    <owl:inverseOf rdf:resource="#aPourEnfant"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="#estMèreDe">
+    <rdfs:domain rdf:resource="#Femme"/>
+    <rdfs:range rdf:resource="#Enfant"/>
+    <owl:inverseOf rdf:resource="#aPourEnfant"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="#aPourEnfant">
+    <rdfs:domain rdf:resource="#Parent"/>
+    <rdfs:range rdf:resource="#Enfant"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="#estFrèreDe">
+    <rdfs:domain rdf:resource="#Frère"/>
+    <rdfs:range rdf:resource="#Frère"/>
+    <owl:inverseOf rdf:resource="#estFrèreDe"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="#estSoeurDe">
+    <rdfs:domain rdf:resource="#Soeur"/>
+    <rdfs:range rdf:resource="#Soeur"/>
+    <owl:inverseOf rdf:resource="#estSoeurDe"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="#estMariéAvec">
+    <rdfs:domain rdf:resource="#Personne"/>
+    <rdfs:range rdf:resource="#Personne"/>
+  </owl:ObjectProperty>
+
+  <!-- Propriétés de données -->
+  <owl:DatatypeProperty rdf:about="#dateDeNaissance">
+    <rdfs:domain rdf:resource="#Personne"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#dateDeDécès">
+    <rdfs:domain rdf:resource="#Personne"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#lieuDeNaissance">
+    <rdfs:domain rdf:resource="#Personne"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+</rdf:RDF>

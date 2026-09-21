@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.municlib.org#"
+     xml:base="http://www.municlib.org"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+
+    <owl:Ontology rdf:about="http://www.municlib.org"/>
+
+    <!-- Classes -->
+    <owl:Class rdf:about="#LivreEnfant"/>
+    <owl:Class rdf:about="#Auteur"/>
+    <owl:Class rdf:about="#Lecteur"/>
+    <owl:Class rdf:about="#Emprunt"/>
+
+    <!-- Object Properties -->
+    <owl:ObjectProperty rdf:about="#empruntéPar">
+        <rdfs:domain rdf:resource="#LivreEnfant"/>
+        <rdfs:range rdf:resource="#Lecteur"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="#écritPar">
+        <rdfs:domain rdf:resource="#LivreEnfant"/>
+        <rdfs:range rdf:resource="#Auteur"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="#enregistréDans">
+        <rdfs:domain rdf:resource="#Emprunt"/>
+        <rdfs:range rdf:resource="#LivreEnfant"/>
+    </owl:ObjectProperty>
+
+</rdf:RDF>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:ex="http://www.example.org/library#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+  <owl:DatatypeProperty rdf:about="http://www.example.org/library#hasTitle">
+    <rdfs:domain rdf:resource="http://www.example.org/library#Book"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:ObjectProperty rdf:about="http://www.example.org/library#hasAuthor">
+    <rdfs:domain rdf:resource="http://www.example.org/library#Book"/>
+    <rdfs:range rdf:resource="http://www.example.org/library#Author"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.example.org/library#isAuthorOf">
+        <rdfs:domain rdf:resource="http://www.example.org/library#Author"/>
+        <rdfs:range rdf:resource="http://www.example.org/library#Book"/>
+      </owl:ObjectProperty>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.example.org/library#borrowedBy">
+    <rdfs:domain rdf:resource="http://www.example.org/library#Book"/>
+    <rdfs:range rdf:resource="http://www.example.org/library#User"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.example.org/library#hasBorrowed">
+        <rdfs:domain rdf:resource="http://www.example.org/library#User"/>
+        <rdfs:range rdf:resource="http://www.example.org/library#Book"/>
+      </owl:ObjectProperty>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <ex:Book rdf:about="http://www.example.org/library#TheLittlePrince">
+    <ex:hasTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Le Petit Prince</ex:hasTitle>
+    <ex:publicationYear rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">1943</ex:publicationYear>
+    <ex:hasAuthor>
+      <ex:Author rdf:about="http://www.example.org/library#SaintExupery"/>
+    </ex:hasAuthor>
+    <ex:borrowedBy>
+      <ex:User rdf:about="http://www.example.org/library#PierreDurand"/>
+    </ex:borrowedBy>
+  </ex:Book>
+  <owl:DatatypeProperty rdf:about="http://www.example.org/library#publicationYear">
+    <rdfs:domain rdf:resource="http://www.example.org/library#Book"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#gYear"/>
+  </owl:DatatypeProperty>
+  <owl:Class rdf:about="http://www.example.org/library#Borrowing"/>
+  <owl:Class rdf:about="http://www.example.org/library#Author"/>
+  <owl:Class rdf:about="http://www.example.org/library#Document"/>
+  <owl:Class rdf:about="http://www.example.org/library#User"/>
+  <owl:Class rdf:about="http://www.example.org/library#Book">
+    <rdfs:subClassOf rdf:resource="http://www.example.org/library#Document"/>
+  </owl:Class>
+</rdf:RDF>
