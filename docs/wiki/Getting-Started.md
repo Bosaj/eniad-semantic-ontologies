@@ -18,8 +18,8 @@ Ensure your system meets the required runtime dependencies:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/Bosaj/eniad-semantic-ontologies.git
-   cd eniad-semantic-ontologies
+   git clone https://github.com/Bosaj/semantic-web-knowledge-ontologies.git
+   cd semantic-web-knowledge-ontologies
    ```
 
 2. **Virtual Environment Setup (Python modules)**:

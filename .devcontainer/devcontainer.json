@@ -1,5 +1,5 @@
 {
-  "name": "eniad-semantic-ontologies",
+  "name": "semantic-web-knowledge-ontologies",
   "image": "mcr.microsoft.com/devcontainers/python:3.12-bookworm",
   "customizations": {
     "vscode": {
